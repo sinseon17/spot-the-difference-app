@@ -1,0 +1,24 @@
+{
+  "name": "spot-the-difference",
+  "version": "1.0.0",
+  "private": true,
+  "description": "틀린그림찾기 — 모바일 PWA + Capacitor 안드로이드 앱",
+  "license": "MIT",
+  "scripts": {
+    "cap:copy": "node scripts/copy-web.js",
+    "cap:add:android": "npm run cap:copy && npx cap add android",
+    "cap:sync": "npm run cap:copy && npx cap sync android",
+    "android": "npm run cap:copy && npx cap open android",
+    "serve": "python3 -m http.server 8080"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

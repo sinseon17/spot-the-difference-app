@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>틀린그림찾기 — 찾아라, 다섯 곳!</title>
+<meta name="description" content="아기자기한 그림에서 다른 곳 5곳을 찾는 캐주얼 게임. 설치 없이 바로, 오프라인도 플레이!">
+<meta name="theme-color" content="#fff4e6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="틀린그림찾기">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ================= 홈 / 스테이지 선택 ================= -->
+  <section class="screen screen-home is-active" id="screenHome" aria-label="스테이지 선택">
+    <header class="home-head">
+      <div class="brand">
+        <img class="brand-icon" src="icons/icon-rounded-512.png" alt="" width="52" height="52">
+        <div class="brand-text">
+          <h1>틀린그림찾기</h1>
+          <p>위·아래 그림에서 다른 곳 <b>5곳</b>을 찾아보세요</p>
+        </div>
+      </div>
+      <button class="icon-btn" id="soundToggleHome" aria-label="소리 켜기/끄기" type="button">🔊</button>
+    </header>
+
+    <div class="stat-strip">
+      <div class="stat"><span class="stat-num" id="statStars">0</span><span class="stat-label">모은 별</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num" id="statCleared">0<small>/5</small></span><span class="stat-label">클리어</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num" id="statBest">—</span><span class="stat-label">최고 기록</span></div>
+    </div>
+
+    <main class="stage-list" id="stageList"></main>
+
+    <footer class="home-foot">
+      <p class="foot-note">그림 5스테이지 · 설치하면 오프라인에서도 플레이</p>
+      <button class="text-btn" id="resetBtn" type="button">기록 초기화</button>
+    </footer>
+  </section>
+
+  <!-- ================= 게임 ================= -->
+  <section class="screen screen-game" id="screenGame" aria-label="게임 화면">
+    <div class="hud-wrap">
+      <header class="hud">
+        <button class="icon-btn back" id="backBtn" type="button" aria-label="뒤로">‹</button>
+        <div class="hud-mid">
+          <div class="hud-line">
+            <span class="hud-title" id="hudTitle">스테이지</span>
+            <span class="chip" id="hudFound">0/5</span>
+          </div>
+          <div class="timer" role="progressbar" aria-label="남은 시간"><i id="timerFill"></i></div>
+        </div>
+        <div class="hud-right">
+          <button class="icon-btn hint" id="hintBtn" type="button" aria-label="힌트">
+            💡<span class="badge" id="hintBadge">2</span>
+          </button>
+          <button class="icon-btn" id="soundToggleGame" type="button" aria-label="소리 켜기/끄기">🔊</button>
+        </div>
+      </header>
+      <div class="hud-sub">
+        <div class="hearts" id="hearts" aria-label="남은 하트"></div>
+        <div class="time-left" id="timeLeft">01:30</div>
+      </div>
+    </div>
+
+    <div class="board" id="board">
+      <div class="panel panel-a" id="panelA" data-panel="a" role="button" tabindex="0" aria-label="원본 그림">
+        <span class="tag">원본</span>
+        <img id="imgA" alt="원본 그림" draggable="false">
+        <div class="marks" id="marksA"></div>
+      </div>
+      <div class="panel panel-b" id="panelB" data-panel="b" role="button" tabindex="0" aria-label="다른 그림">
+        <span class="tag tag-alt">다른 그림</span>
+        <img id="imgB" alt="다른 그림" draggable="false">
+        <div class="marks" id="marksB"></div>
+      </div>
+    </div>
+
+    <p class="game-tip" id="gameTip">그림을 눌러 다른 곳을 찾아보세요</p>
+  </section>
+</div>
+
+<div class="modal-root" id="modalRoot" hidden>
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="stages.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
